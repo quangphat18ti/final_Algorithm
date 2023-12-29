@@ -8,4 +8,5 @@
     * Độ khó:
     * Gợi ý tư duy:
     * Giải
+   * `Extend.md`: Các hướng để phát triển và nâng cấp bài toán.
   * Code
