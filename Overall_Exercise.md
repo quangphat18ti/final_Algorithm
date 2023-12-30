@@ -545,7 +545,7 @@ Nhìn bài toán theo 1 góc nhìn khác:
 
 **Gợi ý**: 2 con trỏ
 
-## Bài 15
+## Bài 15: Hình tròn giao nhau
 
 ### Tóm tắt
 
@@ -583,6 +583,43 @@ Các tính chất có thể áp dụng:
 
 ### Tóm tắt
 
+- Tổng khoảng cách giữa các cặp đỉnh $(u, v)$ trên cây.
+
+### Nhận xét đề
+
+- Đề không bắt mình tính khoảng cách cụ thể của từng cặp đỉnh.
+
+  > Liệu có cách nào để không cần phải xét đến từng cặp đỉnh không?
+
+- Khoảng cách giữa 2 đỉnh trên cây: **LCA**.
+
+### Hướng giải
+
+#### Cách 1: Duyệt từng cặp đỉnh - $O(N^2LogN)$
+
+- Độ phức tạp: $O(N^2LogN)$
+
+- Duyệt từng cặp đỉnh. Với mỗi cặp đỉnh, dùng LCA để tính khoảng cách.
+
+#### Cách 2: Duyệt từng cặp đỉnh - $O(N^2)$
+
+- Thay vì duyệt các cặp đỉnh và phải đi tính lại khoảng cách giữa các cặp này. Liệu có cách nào để ta sử dụng lại dữ kiện không?
+
+- Giả xử, xét 1 đỉnh $u$. Thì ta nên duyệt các đỉnh $v$ theo thứ tự như thế nào để có thể biết được khoảng cách giữa $u$ và $v$ trong $O(1)$?
+  > Thứ tự DFS.
+
+#### Cách 3: Không duyệt từng cặp đỉnh - O(N)
+
+- Với ở cách làm này thì ta sẽ cố gắng tận dụng lại dữ kiện để có thể tính 1 lần nhiều cặp đỉnh cùng 1 lúc.
+
+### Mở rộng
+
+1. $n \leq 10^6$
+
+## Bài 17
+
+### Tóm tắt
+
 ### Nhận xét đề
 
 ### Hướng giải
@@ -599,26 +636,20 @@ Các tính chất có thể áp dụng:
 
 ### Mở rộng
 
-
-
-
 ## Bài 20
+
 ### Tóm tắt
+
 Xét tất cả hoán vị của dãy số tự nhiên $(1,2, \cdots, n)$. Giả sử rằng các hoán vị được xếp theo thứ tự từ điển và đánh số từ tới $n!$.
 
 **Yêu cầu**: Cho trước một hoán vị $(p_1, p_2, \cdots, p_n)$, hãy cho biết số thứ tự $x$ của nó và ngược lại: Cho trước số thứ tự $y$ ($1\leq y \leq n!$), hãy tìm dãy hoán vị tương ứng với nó.
 
 ### Nhận xét đề
+
 Gọi $f(n)$ ($1 \leq n$) là số hoán vị của dãy số gồm $n$ phần tử khác nhau từng đôi một, với mọi $n > 1$ ta có:
 $$f(n) = n \cdot f(n-1).$$
 Nhận xét trên có thể dễ dàng chứng minh bằng quy nạp toán học.
 
-
-
-
-
-
 ### Hướng giải
 
 ### Mở rộng
-
