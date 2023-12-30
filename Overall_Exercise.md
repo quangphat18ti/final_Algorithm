@@ -414,7 +414,7 @@ Trạng thái quy hoạch động:
 
 Độ phức tạp: $O(N^2)$
 
-#### Cách 3:
+#### Cách 3: Tham lam - Priority Queue
 
 Nhìn bài toán theo 1 góc nhìn khác:
 
@@ -474,6 +474,118 @@ Nhìn bài toán theo 1 góc nhìn khác:
   3. Thêm phần tử mới pop ra vào tập hợp thứ $2$.
 
 - Độ phức tạp: $O(NlogN)$
+
+### Bài 12: Vẽ hình vuông
+
+## Mẫu bài
+
+### Tóm tắt
+
+- Vẽ hình vuông với tọa độ nguyên có diện tích bằng $S$.
+
+### Nhận xét đề
+
+- Ta chỉ cần tìm $a$, $b$ với: $a^2 + b^2 = S$ với $a, b$ là số nguyên.
+
+### Hướng giải
+
+- Với tọa độ: $(x_a, y_A)$ và 2 giá trị $(a, b)$ tìm được thì ta sẽ dễ dàng vẽ được hình vuông.
+  > (xA, yA), (xA + a, yA + b), (xA -b + a, yA + a + b), (xA - b, yA + a)
+
+### Mở rộng
+
+1. Giới hạn MAX của bài này là bao nhiêu?
+2. Đếm số lượng hình vuông có diện tích bằng $S$.
+
+- Số lượng cặp $(a, b)$ thõa mãn $a^2 + b^2 = S$.
+- Với mỗi cặp, vẽ được bao nhiêu hình.
+
+## Bài 13 (Sửa trên lớp rồi nè)
+
+### Tóm tắt
+
+- Chọn điểm để chia tập hợp điểm ban đầu thành 2 phần bằng nhau.
+
+### Hướng giải
+
+- Với mỗi điểm thì luôn tìm được điểm còn lại thỏa bài toán.
+- Sort theo góc.
+
+### Mở rộng
+
+## Bài 14: Đường chéo linh thiêng
+
+### Tóm tắt
+
+- Cho tập $N$ đỉnh trên bao lồi.
+- Tìm đường chéo chia hình thành 2 phần có chênh lệch diện tích nhỏ nhất.
+
+### Hướng giải
+
+#### Cách 1: Trâu toàn phần
+
+> Độ phức tạp: $O(N^3)$
+
+1. Chạy $N^2$ đường chéo.
+2. Với mỗi đường chéo duyệt qua tính diện tích từng phần. (Độ phức tạp: $O(N)$)
+3. Lưu lại đường chéo có diện tích nhỏ nhất.
+
+#### Cách 2: Trâu một phần - hơi dùng não
+
+> Độ phức tạp: $O(N^2)$
+
+1. Chạy $N^2$ đường chéo.
+2. Với mỗi đường chéo duyệt qua tính diện tích từng phần. (Độ phức tạp: $O(1)$)
+   - Làm sao để tận dụng lại được dữ liệu?
+3. Lưu lại đường chéo có diện tích nhỏ nhất.
+
+#### Cách 3: Dùng não hơi nhiều
+
+> Độ phức tạp: $O(N)$
+
+**Gợi ý**: 2 con trỏ
+
+## Bài 15
+
+### Tóm tắt
+
+- Tìm diện tích giao nhau giữa 2 hình tròn
+
+### Hướng giải
+
+Tính diện tích giao nhau:
+
+- Tính góc
+- Tính diện tích cung tròn
+- Tính diện tích tam giác
+
+Chỉ cần tính được góc thì có thể suy ra $2$ diện tích còn lại.
+
+![Alt text](image-1.png)
+Các tính chất có thể áp dụng:
+
+1. Đường ngang đi qua trung điểm của đường dọc.
+2. 2 đường vuông góc với nhau.
+3. Nếu 2 bán kính bằn nhau thì đường dọc cũng đi qua trung điểm đường ngang luôn.
+
+### Mở rộng
+
+1. 2 bán kính không bằng nhau.
+
+- Giải 2 phương trình 2 ẩn số để tìm độ dài của 2 cạnh màu xanh chuối chưa biết.
+  - Dựa vào $R_1^2 - R_2^2$ và tổng độ dài 2 cạnh đó.
+
+2. Có n hình tròn
+
+- Bù trừ để tìm diện tích giao nhau.
+
+## Bài 16
+
+### Tóm tắt
+
+### Nhận xét đề
+
+### Hướng giải
 
 ### Mở rộng
 
