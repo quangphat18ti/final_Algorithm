@@ -3,6 +3,14 @@
 1. [Bài 1](#bài-1-đoạn-con-có-ucln-lớn-nhất)
 2. [Bài 2](#bài-2-số-nguyên-tố-có-tổng-n)
 3. [Bài 3](#bài-3-tổng-nhỏ-nhất-2-phần-tử-2-mảng)
+4. [Bài 4](#bài-4-cặp-nghịch-thế)
+5. [Bài 5](#bài-5)
+6. [Bài 6](#bài-6-sắp-xếp-tăng-dần)
+7. [Bài 7](#bài-7-ướt-mưa)
+8. [Bài 8](#bài-8-đặt-hậu)
+9. [Bài 9](#bài-9)
+10. [Bài 10](#bài-10)
+11. [Mẫu bài](#mẫu-bài)
 
 ## Bài 1: Đoạn con có UCLN lớn nhất
 
@@ -358,6 +366,8 @@ Phân tích: (Không mất tính tổng quát, ta chỉ xét HCN toàn số 1)
 
 ## Bài 11
 
+[Link đề](https://codeforces.com/contest/730/problem/I)
+
 ### Tóm tắt
 
 - Cho $K$ phần tử. Mỗi phần tử sẽ có 2 giá trị $a_i$ và $b_i$.
@@ -372,19 +382,98 @@ Phân tích: (Không mất tính tổng quát, ta chỉ xét HCN toàn số 1)
 
 ### Nhận xét đề
 
-- Nếu chỉ xét 2 phần tử, mỗi phần tử vào 1 nhóm thì ta sẽ xếp như thế nào?
-- Nếu chia hết K phần tử vào 1 trong 2 nhóm, nhóm 1 có $N$ phần tử, nhóm 2 có $K - N$ phần tử thì tổng giá trị lớn nhất là bao nhiêu?
+- Nếu chỉ xét $2$ phần tử, mỗi phần tử vào $1$ nhóm thì ta sẽ xếp như thế nào?
+- Nếu chia hết $K$ phần tử vào 1 trong 2 nhóm, nhóm 1 có $N$ phần tử, nhóm 2 có $K - N$ phần tử thì tổng giá trị lớn nhất là bao nhiêu?
 - Cần loại bỏ $K - N - M$ phần tử thì loại bỏ những phần tử nào?
-
 - Giá trị $a_i$ với $b_i$ nhỏ thì có ứng dụng được gì không?
 
 ### Hướng giải
 
-#### Cách 1: Quy hoạch động
+#### Cách 1: Quy hoạch động $O(N^3)$
 
 $F[i][j][k]$ là: Tổng giá trị lớn nhất tạo được khi xét đến phần tử thứ $i$ và đã chọn $j$ phần tử vào nhóm 1 và $k$ phần tử vào nhóm 2.
 
-- Độ phức tạp:
+- Độ phức tạp: $N^3$
+
+#### Cách 2: Quy hoạch động $O(N^2)$
+
+**Nhận xét (Quan trọng)**:
+
+- Nếu ta đã chọn được 1 tập các phần tử thuộc vào nhóm 2 rồi.
+- Thì các phần tử còn lại, ta chỉ cần sort giảm dần và lấy ra $N$ thằng đầu tiên.
+
+Như vậy, khi ta sort dữ liệu theo sự giảm dần của $A_i$ thì chắc chắn:
+
+- Nếu thằng thứ $i$ không vào nhóm $2$ thì chắc chắn sẽ vào nhóm $1$ nếu còn trống.
+
+Trạng thái quy hoạch động:
+
+- $F[i][j]$ là: Tổng giá trị lớn nhất tạo được khi xét đến phần tử thứ $i$ và đã chọn $j$ phần tử vào nhóm 2.
+  - Lúc này, $i - j$ là số lượng phần tử đã vào nhóm $1$.
+  - Nếu $i - j > N$ thì mình sẽ không cập nhật giá trị $A_i$ vào.
+
+Độ phức tạp: $O(N^2)$
+
+#### Cách 3:
+
+Nhìn bài toán theo 1 góc nhìn khác:
+
+- Cho $K$ phần tử.
+
+  - Mỗi phần tử sẽ có sức mạnh bình thường là $b_i$.
+  - Nếu được nâng cấp sức mạnh thì sẽ đạt được mức là : $a_i$. (Không đảm bảo $a_i > b_i$)
+
+- Bạn được chọn ra $N + M$ phần tử trong tập hợp. Đồng thời buộc phải nâng cấp cho $N$ phần tử trong số đó. Hỏi: Tổng sức mạnh lớn nhất có thể đạt được là bao nhiêu?
+  - Nếu nâng cấp thì mình sẽ được: $a_i - b_i$.
+
+**Quy ước:**
+
+- Nhóm $A$: Là nhóm các phần tử nhận giá trị $a_i$. ($N$ phần tử)
+- Nhóm $B$: Là nhóm các phần tử nhận giá trị $b_i$. ($M$ phần tử)
+
+**Nhận xét:**
+
+- Ta sẽ chia ra làm 3 tập hợp:
+
+  0. **Tập hợp 0**: Tập hợp các phần tử đã chọn vào nhóm $A$. (Chúng ta sẽ đi cập nhật tập hợp này.)
+     - Gọi $T$ là số lượng phần tử của tập hợp.
+     - Ban đầu thì $T = 0$.
+     - Khi có phần tử được thêm vào thì $T+=1$
+  1. **Tập hợp 1** (Ứng cử viên cho nhóm $B$): gồm $N + M - T$ phần tử có $b_i$ lớn nhất. Coi như mình chọn tất cả vào nhóm $B$. Sau đó mình sẽ lọc lại vào nhóm $A$ sau.
+  2. **Tập hợp 2**: Tập các phần tử còn lại.
+
+- Ta thấy, nếu ta muốn chọn các phần tử vào nhóm $B$ thì chỉ chọn trong tập hợp 1 thôi. (Vì tập có $b_i$ lớn nhất).
+- Lúc này, tập thứ $2$ chỉ có thể là những ứng cử viên để tham gia vào nhóm $A$.
+
+- Như vậy, công việc tiếp theo là làm sao để chọn ra các phần tử thuộc thuộc tập hợp $1$ và $2$ để đưa vào nhóm $A$ - hay là tập hợp 0.
+
+**Giải**:
+
+- Chuyện gì sẽ xảy ra khi đưa 1 phần tử từ tập hợp 1 sang nhóm $A$:
+
+  - Ta chỉ cần quan tâm đến $a_i - b_i$.
+    > Vậy, ứng cử viên nặng ký nhất trong tập hợp thứ $1$ sẽ là phần tử có $a_i - b_i$ **lớn nhất**.
+
+- Chuyện gì nếu ta đưa 1 phần tử từ tập thứ $2$ sang nhóm $A$:
+
+  - Ta chỉ cần quan tâm đến phần tử có $a_i$ càng lớn càng tốt.
+    > Vậy ứng cử viên nặng ký nhất trong tập hợp thứ $2$ sẽ là phần tử có $a_i$ **lớn nhất**.
+
+- Thế giờ nếu đã có 2 ứng cử viên của 2 tập rồi thì ta sẽ chọn ứng cử viên nào?
+
+  - Gọi ứng cử viên của tập thứ $1$ là $X$ và tập thứ $2$ là $Y$.
+  - Nếu $a_X - b_X > a_Y - min\_b\_value()$ thì ta sẽ chọn $X$.
+    - $min\_b\_value()$ : Là giá trị $b_i$ nhỏ nhất trong tập hợp thứ $1$.
+  - Ngược lại thì chọn $Y$.
+
+- Nếu chọn $X$ thì ta sẽ đưa $X$ ra khỏi tập hợp thứ $1$.
+- Nếu chọn $Y$ thì:
+
+  1. Đưa $Y$ ra tập hợp thứ $2$.
+  2. Pop giá trị có $b_i$ nhỏ nhất ra khỏi tập hợp thứ $1$. (Để duy trình tính đúng đắn của tập hợp $1$)
+  3. Thêm phần tử mới pop ra vào tập hợp thứ $2$.
+
+- Độ phức tạp: $O(NlogN)$
 
 ### Mở rộng
 

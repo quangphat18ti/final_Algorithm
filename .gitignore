@@ -1,1 +1,6 @@
-# Overall_Exercise.md
+# ignore all file .exe
+*.exe
+*/*.exe
+
+# ignore .vscode
+.vscode
