@@ -10,7 +10,7 @@
 8. [Bài 8](#bài-8-đặt-hậu)
 9. [Bài 9](#bài-9)
 10. [Bài 10](#bài-10)
-11. [Mẫu bài](#mẫu-bài)
+11. [Bài 11](#bài-11)
 
 ## Bài 1: Đoạn con có UCLN lớn nhất
 
