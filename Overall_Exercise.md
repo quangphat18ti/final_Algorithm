@@ -486,3 +486,27 @@ Nhìn bài toán theo 1 góc nhìn khác:
 ### Hướng giải
 
 ### Mở rộng
+
+
+
+
+## Bài 20
+### Tóm tắt
+Xét tất cả hoán vị của dãy số tự nhiên $(1,2, \cdots, n)$. Giả sử rằng các hoán vị được xếp theo thứ tự từ điển và đánh số từ tới $n!$.
+
+**Yêu cầu**: Cho trước một hoán vị $(p_1, p_2, \cdots, p_n)$, hãy cho biết số thứ tự $x$ của nó và ngược lại: Cho trước số thứ tự $y$ ($1\leq y \leq n!$), hãy tìm dãy hoán vị tương ứng với nó.
+
+### Nhận xét đề
+Gọi $f(n)$ ($1 \leq n$) là số hoán vị của dãy số gồm $n$ phần tử khác nhau từng đôi một, với mọi $n > 1$ ta có:
+$$f(n) = n \cdot f(n-1).$$
+Nhận xét trên có thể dễ dàng chứng minh bằng quy nạp toán học.
+
+
+
+
+
+
+### Hướng giải
+
+### Mở rộng
+
