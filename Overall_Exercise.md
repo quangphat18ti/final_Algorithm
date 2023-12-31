@@ -834,11 +834,45 @@ Nhận xét trên có thể dễ dàng chứng minh bằng quy nạp toán học
 
 ### Mở rộng
 
-## Bài 21
+## Bài 21 - Nâng cấp đồ thị
 
 ### Tóm tắt
 
+- Cho đồ thị $N$ đỉnh, $M$ cạnh sao cho mỗi đỉnh đều có đường đi tới nhau.
+- Cần chọn một số cạnh để nâng cấp sao cho:
+  - Mọi đường đi giữa các cặp đỉnh tới nhau đều đi qua 1 con đường được nâng cấp.
+  - Tổng chi phí nâng cấp là nhỏ nhất.
+- Đề xuất $K$ phương án
+
 ### Nhận xét đề
+
+#### Nếu đồ thị là cây
+
+- Nâng cấp hết
+
+#### Nếu các cạnh có trọng số như nhau
+
+- Chỉ quan tâm tới số lượng cạnh cần nâng cấp
+
+#### K phương án
+
+- Chưa biết xử lý như nào
+
+### Hướng giải
+
+### Mở rộng
+
+## Bài 22 - Cạnh cầu trên đồ thị
+
+### Tóm tắt
+
+- Cho đồ thị $N$ đỉnh và $M$ cạnh.
+- Hỏi với mỗi cạnh, nếu ta xóa cạnh đó đi thì đồ thị có bao nhiêu đỉnh không đến được với nhau.
+
+### Nhận xét đề
+
+1. Đồ thị có thể có nhiều thành phần liên thông.
+2. Chỉ có xóa cạnh cầu thì mới gia tăng số cặp đỉnh không đến được với nhau.
 
 ### Hướng giải
 
