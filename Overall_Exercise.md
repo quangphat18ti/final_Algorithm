@@ -15,9 +15,13 @@
 13. [Bài 13](#bài-13-sửa-trên-lớp-rồi-nè)
 14. [Bài 14](#bài-14-đường-chéo-linh-thiêng)
 15. [Bài 15](#bài-15-hình-tròn-giao-nhau)
-16. [Bài 16](#bài-16)
+16. [Bài 16](#bài-16-độ-rộng-cây)
 17. [Bài 17](#bài-17)
 18. [Bài 18](#bài-18-đảo-dãy)
+19. [Bài 19](#bài-19-đào-hố)
+20. [Bài 20](#bài-20)
+21. [Bài 21](#bài-21-nâng-cấp-đồ-thị)
+22. [Bài 22](#bài-22-cạnh-cầu-trên-đồ-thị)
 
 ## Bài 1: Đoạn con có UCLN lớn nhất
 
@@ -598,7 +602,7 @@ Các tính chất có thể áp dụng:
 
 - Bù trừ để tìm diện tích giao nhau.
 
-## Bài 16
+## Bài 16: Độ rộng cây
 
 ### Tóm tắt
 
@@ -749,7 +753,7 @@ Sau đó, ta có thể tìm đáp án bằng Quy hoạch động:
 
 ### Mở rộng
 
-## Bài 19
+## Bài 19: Đào hố
 
 ### Tóm tắt
 
@@ -852,7 +856,7 @@ Nhận xét trên có thể dễ dàng chứng minh bằng quy nạp toán học
 
 ### Mở rộng
 
-## Bài 21 - Nâng cấp đồ thị
+## Bài 21: Nâng cấp đồ thị
 
 ### Tóm tắt
 
@@ -880,7 +884,7 @@ Nhận xét trên có thể dễ dàng chứng minh bằng quy nạp toán học
 
 ### Mở rộng
 
-## Bài 22 - Cạnh cầu trên đồ thị
+## Bài 22: Cạnh cầu trên đồ thị
 
 ### Tóm tắt
 
@@ -895,6 +899,3 @@ Nhận xét trên có thể dễ dàng chứng minh bằng quy nạp toán học
 ### Hướng giải
 
 ### Mở rộng
-
-$$
-$$
