@@ -15,9 +15,13 @@
 13. [Bài 13](#bài-13-sửa-trên-lớp-rồi-nè)
 14. [Bài 14](#bài-14-đường-chéo-linh-thiêng)
 15. [Bài 15](#bài-15-hình-tròn-giao-nhau)
-16. [Bài 16](#bài-16)
+16. [Bài 16](#bài-16-độ-rộng-cây)
 17. [Bài 17](#bài-17)
 18. [Bài 18](#bài-18-đảo-dãy)
+19. [Bài 19](#bài-19-đào-hố)
+20. [Bài 20](#bài-20)
+21. [Bài 21](#bài-21-nâng-cấp-đồ-thị)
+22. [Bài 22](#bài-22-cạnh-cầu-trên-đồ-thị)
 
 ## Bài 1: Đoạn con có UCLN lớn nhất
 
@@ -489,23 +493,25 @@ Nhìn bài toán theo 1 góc nhìn khác:
 - Vẽ hình vuông với tọa độ nguyên có diện tích bằng $S$.
 
 ### Nhận xét đề
-- Với giá trị nguyên $S > 0$, tồn tại hình vuông tọa độ nguyên có diện bằng $S$ khi và chỉ khi $S$ là tổng của hai số chính phương:
-$$
-\begin{aligned}
-S &= S_{ABCD}\\
-\iff \sqrt{S} &= AB = BC = CD = DA\\
-\iff \sqrt{S} &= \sqrt{(x_A - x_B)^2 + (y_A - y_B)^2}\\
-\iff S &= (x_A - x_B)^2 + (y_A - y_B)^2\\
 
-\end{aligned}
-$$
+- Với giá trị nguyên $S > 0$, tồn tại hình vuông tọa độ nguyên có diện bằng $S$ khi và chỉ khi $S$ là tổng của hai số chính phương:
+
+  $$
+    \begin{aligned}
+    S &= S_{ABCD}\\
+    \iff \sqrt{S} &= AB = BC = CD = DA\\
+    \iff \sqrt{S} &= \sqrt{(x_A - x_B)^2 + (y_A - y_B)^2}\\
+    \iff S &= (x_A - x_B)^2 + (y_A - y_B)^2\\
+    \end{aligned}
+  $$
 
 - Ta thực hiện hai công việc:
   - Kiểm tra liệu $S$ có là tổng của hai số chính phương.
   - Nếu $S$ là tổng của hai số chính phương $a^2$ và $b^2$, xuất ra 4 đỉnh của hình vuông bất kỳ thỏa mãn yêu cầu đề bài.
 
 ### Hướng giải
-- Quá trình tìm $a$ và $b$ sao cho $S = a^2 + b^2$: 
+
+- Quá trình tìm $a$ và $b$ sao cho $S = a^2 + b^2$:
   - **Thuật giải cơ bản**: Tìm tất cả cặp $(a,b)$ trong đó $0 \leq a \le b \leq \sqrt{S}$. Độ phức tạp $O(S)$. Độ phức tạp này chấp nhận được với giá trị $S$ nhỏ được cho trong đề.
   - **Tìm kiếm nhị phân**: Xây dựng mảng `square` trong đó `square[i]` chứa giá trị `i*i`
 
@@ -595,7 +601,7 @@ Các tính chất có thể áp dụng:
 
 - Bù trừ để tìm diện tích giao nhau.
 
-## Bài 16
+## Bài 16: Độ rộng cây
 
 ### Tóm tắt
 
@@ -662,7 +668,7 @@ Các tính chất có thể áp dụng:
 
 - Như vậy, với $N$ nhỏ thì việc có nhiều giá trị có cùng số dư với $N$ là điều khó tránh khỏi. Với cách làm như này thì sẽ rút ngắn xuống cũng kha khá.
 
-**Công thức quy hoạch động**:  
+**Công thức quy hoạch động**:
 $DP[i][j] = 0/ 1$ có ý nghĩa như sau:
 
 - $i$ là số lượng ký tự đã xét.
@@ -693,7 +699,7 @@ Lưu ý khi xây dựng $Pow$, ta sẽ gặp phải 1 trong 2 trường hợp nh
 Sau đó, ta có thể tìm đáp án bằng Quy hoạch động:
 
 - Chọn ra các phần tử có giá trị nhỏ nhất mà có tổng chia hết cho $N$.
-- Cái khó ở đây là việc xuất hiện **chu trình**.  
+- Cái khó ở đây là việc xuất hiện **chu trình**.
   => Các giá trị có thể được lựa chọn 1 hoặc nhiều lần.
 
 Độ phức tạp: $O(N \times N)$
@@ -746,7 +752,7 @@ Sau đó, ta có thể tìm đáp án bằng Quy hoạch động:
 
 ### Mở rộng
 
-## Bài 19
+## Bài 19: Đào hố
 
 ### Tóm tắt
 
@@ -849,7 +855,7 @@ Nhận xét trên có thể dễ dàng chứng minh bằng quy nạp toán học
 
 ### Mở rộng
 
-## Bài 21 - Nâng cấp đồ thị
+## Bài 21: Nâng cấp đồ thị
 
 ### Tóm tắt
 
@@ -877,7 +883,7 @@ Nhận xét trên có thể dễ dàng chứng minh bằng quy nạp toán học
 
 ### Mở rộng
 
-## Bài 22 - Cạnh cầu trên đồ thị
+## Bài 22: Cạnh cầu trên đồ thị
 
 ### Tóm tắt
 
