@@ -93,7 +93,7 @@
 
 ### Hướng giải
 
-#### Cách 1:
+#### Cách 1: Trâu - $O(n^2)$
 
 - Sàng nguyên tố theo $n$.
 - Với mỗi giá trị $i$:
@@ -102,7 +102,7 @@
 
 Độ phức tạp: $O(n^2)$
 
-#### Cách 2:
+#### Cách 2: Binary search - $O(nlogn)$
 
 ```
 Liệu có cách nào khai triển $f(n)$ để không phụ thuộc vào $g(i)$ không?
@@ -118,13 +118,12 @@ Phát biểu lại yêu cầu bài toán:
 
 Cách làm:
 
-1. Sàng nguyên tố
-2. Chạy $q$ từ $1 \Rightarrow N$ và đếm xem có bao nhiêu $q$ thõa yêu cầu.
+1. Sàng nguyên tố theo $N$.
+2. Chạy $p$ từ $1 \Rightarrow N/2$ và đếm xem có bao nhiêu $q$ thõa yêu cầu.
+   - $p \leq q \leq N - p$
    - Tìm kiếm nhị phân.
 
 Độ phức tạp: $O(nlogn)$
-
-#### Cách 3: Liệu có cách nào có độ phức tạp O(n) không?
 
 ### Mở rộng:
 
@@ -532,6 +531,7 @@ Nhìn bài toán theo 1 góc nhìn khác:
 ## Bài 13 (Sửa trên lớp rồi nè)
 
 ### Tóm tắt
+
 Cho một số chẵn các điểm tọa độ nguyên trên hệ trục tọa độ vuông góc. Tìm một đoạn thẳng nối 2 điểm trong số các điểm đã cho đoạn thẳng này chia tập điểm đã cho thành 2 phần có số điểm bằng nhau.
 
 ### Hướng giải
