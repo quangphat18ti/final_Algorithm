@@ -893,14 +893,3 @@ Nhận xét trên có thể dễ dàng chứng minh bằng quy nạp toán học
 ### Hướng giải
 
 ### Mở rộng
-
-<!--
-## Mẫu bài
-
-### Tóm tắt
-
-### Nhận xét đề
-
-### Hướng giải
-
-### Mở rộng -->
