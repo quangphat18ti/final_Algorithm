@@ -11,6 +11,13 @@
 9. [Bài 9](#bài-9)
 10. [Bài 10](#bài-10)
 11. [Bài 11](#bài-11)
+12. [Bài 12](#bài-12-vẽ-hình-vuông)
+13. [Bài 13](#bài-13-sửa-trên-lớp-rồi-nè)
+14. [Bài 14](#bài-14-đường-chéo-linh-thiêng)
+15. [Bài 15](#bài-15-hình-tròn-giao-nhau)
+16. [Bài 16](#bài-16)
+17. [Bài 17](#bài-17)
+18. [Bài 18](#bài-18-đảo-dãy)
 
 ## Bài 1: Đoạn con có UCLN lớn nhất
 
@@ -414,7 +421,7 @@ Trạng thái quy hoạch động:
 
 Độ phức tạp: $O(N^2)$
 
-#### Cách 3:
+#### Cách 3: Tham lam - Priority Queue
 
 Nhìn bài toán theo 1 góc nhìn khác:
 
@@ -475,56 +482,407 @@ Nhìn bài toán theo 1 góc nhìn khác:
 
 - Độ phức tạp: $O(NlogN)$
 
-### Mở rộng
+## Bài 12: Vẽ hình vuông
 
-
-## Bài 12
 ### Tóm tắt
-Cho biết liệu ta có thể xây dựng được một hình vuông trên trục tọa độ vuông góc với tọa độ các điểm là số nguyên và diện tích bằng với giá trị $S$ cho trước. Nếu có, liệt kê tọa độ các đỉnh của một hình vuông bất kỳ thỏa mãn.
+
+- Vẽ hình vuông với tọa độ nguyên có diện tích bằng $S$.
 
 ### Nhận xét đề
-Độ dài cạnh của một hình vuông diện tích $S$ là $\sqrt{S}$. Giả sử tồn tại hình vuông $ABCD$ có diện tích là $S$,  thì $AB = BC = CD = DA = \sqrt{S}$, hay:
-$$
-\begin{aligned}
-\sqrt{S} &= \sqrt{(x_A - x_B)^2 + (y_A - y_B)^2}\\
-\iff S &= (x_A - x_B)^2 + (y_A - y_B)^2.
-\end{aligned}
-$$
-Vì theo đề bài, $x_A$, $x_B$, $y_A$, $y_B$ là số nguyên, nên $(x_A - x_B)$  và $(y_A - y_B)$ cũng là số nguyên.
+
+- Ta chỉ cần tìm $a$, $b$ với: $a^2 + b^2 = S$ với $a, b$ là số nguyên.
 
 ### Hướng giải
-#### Kiểm tra liệu một số có phải là tổng của hai số chính phương.
-Dựa trên nhận xét đã cho ở trên, để biết liệu có tồn tại hình vuông thỏa mãn đề bài, ta kiểm tra liệu $S$ có phải là tổng của hai số chính phương hay không.:
-- **Phương án "ngây thơ"**: sử dụng hai vòng lặp để kiểm tra các cặp $(a, b)$ có thỏa mãn $a^2 + b^2 = S$ hay không. Độ phức tạp $O(S)$.
-- **Sử dụng tìm kiếm nhị phân**: Tạo mảng `square` trong đó vị trí `i` lưu số chính phương $i^2$ và $0 \leq i^2 \leq S$. Với số chính phương $a^2$  $(a^2 \leq S)$, ta dùng tìm kiếm nhị phân để tìm xem giá trị $b^2 = (S - a^2)$ có xuất hiện trong mảng `square` hay không. Nếu không tìm thấy giá trị nào, trả về kết quả `impossible`.
-#### Tọa độ bốn điểm của hình vuông
-Khi ta tìm được hai giá trị $a$ và $b$. Tọa độ các đỉnh của hình vuông đáp án có dạng (giả định chúng đều nằm trong giới hạn đề bài):
-- $A(x_0, y_0)$
-- $B(x_0 + a, y_0 + b )$
-- $C(x_0 + a + b, y_0 - a + b)$
-- $D(x_0 + b, y_0 - a)$
 
-hoặc:
-- $A(x_0, y_0)$
-- $B(x_0 + b, y_0 + a)$
-- $C(x_0 + a + b, y_0 + a - b)$
-- $D(x_0 + a, y_0 - b)$
-
-
-
-
+- Với tọa độ: $(x_a, y_A)$ và 2 giá trị $(a, b)$ tìm được thì ta sẽ dễ dàng vẽ được hình vuông.
+  > (xA, yA), (xA + a, yA + b), (xA -b + a, yA + a + b), (xA - b, yA + a)
 
 ### Mở rộng
-#### Mở rộng 1: Đếm số lượng tất cả các hình vuông thỏa mãn trong giới hạn tọa độ.
-Nếu không có cặp giá trị nguyên $(a,b)$ sao cho $a^2 + b^2 = S$ thì đáp án là 0. Nếu tồn tại, ta có 3 trường hợp con xảy ra:
-1. $a = 0$ hoặc $b = 0$: Ít nhất một cạnh của hình vuông song song với một trục tọa độ. 
-2. $a = b$: Ít nhất một đường chéo của hình vuông song song với một trục tọa độ.
-3. Các trường hợp nằm ngoài 2 trường hợp trên: Với mỗi hình vuông bất kỳ có cạnh $(a + b)$ và tọa độ là số nguyên trên hệ trục tọa độ, tồn tại đúng 2 hình vuông thỏa mãn yêu cầu đề bài với các đỉnh nằm trên các cạnh của hình vuông đó. 
 
+1. Giới hạn MAX của bài này là bao nhiêu?
+2. Đếm số lượng hình vuông có diện tích bằng $S$.
 
+- Số lượng cặp $(a, b)$ thõa mãn $a^2 + b^2 = S$.
+- Với mỗi cặp, vẽ được bao nhiêu hình.
 
+## Bài 13 (Sửa trên lớp rồi nè)
 
+### Tóm tắt
 
+- Chọn điểm để chia tập hợp điểm ban đầu thành 2 phần bằng nhau.
+
+### Hướng giải
+
+- Với mỗi điểm thì luôn tìm được điểm còn lại thỏa bài toán.
+- Sort theo góc.
+
+### Mở rộng
+
+## Bài 14: Đường chéo linh thiêng
+
+### Tóm tắt
+
+- Cho tập $N$ đỉnh trên bao lồi.
+- Tìm đường chéo chia hình thành 2 phần có chênh lệch diện tích nhỏ nhất.
+
+### Hướng giải
+
+#### Cách 1: Trâu toàn phần
+
+> Độ phức tạp: $O(N^3)$
+
+1. Chạy $N^2$ đường chéo.
+2. Với mỗi đường chéo duyệt qua tính diện tích từng phần. (Độ phức tạp: $O(N)$)
+3. Lưu lại đường chéo có diện tích nhỏ nhất.
+
+#### Cách 2: Trâu một phần - hơi dùng não
+
+> Độ phức tạp: $O(N^2)$
+
+1. Chạy $N^2$ đường chéo.
+2. Với mỗi đường chéo duyệt qua tính diện tích từng phần. (Độ phức tạp: $O(1)$)
+   - Làm sao để tận dụng lại được dữ liệu?
+3. Lưu lại đường chéo có diện tích nhỏ nhất.
+
+#### Cách 3: Dùng não hơi nhiều
+
+> Độ phức tạp: $O(N)$
+
+**Gợi ý**: 2 con trỏ
+
+## Bài 15: Hình tròn giao nhau
+
+### Tóm tắt
+
+- Tìm diện tích giao nhau giữa 2 hình tròn
+
+### Hướng giải
+
+Tính diện tích giao nhau:
+
+- Tính góc
+- Tính diện tích cung tròn
+- Tính diện tích tam giác
+
+Chỉ cần tính được góc thì có thể suy ra $2$ diện tích còn lại.
+
+![Alt text](image-1.png)
+Các tính chất có thể áp dụng:
+
+1. Đường ngang đi qua trung điểm của đường dọc.
+2. 2 đường vuông góc với nhau.
+3. Nếu 2 bán kính bằn nhau thì đường dọc cũng đi qua trung điểm đường ngang luôn.
+
+### Mở rộng
+
+1. 2 bán kính không bằng nhau.
+
+- Giải 2 phương trình 2 ẩn số để tìm độ dài của 2 cạnh màu xanh chuối chưa biết.
+  - Dựa vào $R_1^2 - R_2^2$ và tổng độ dài 2 cạnh đó.
+
+2. Có n hình tròn
+
+- Bù trừ để tìm diện tích giao nhau.
+
+## Bài 16
+
+### Tóm tắt
+
+- Tổng khoảng cách giữa các cặp đỉnh $(u, v)$ trên cây.
+
+### Nhận xét đề
+
+- Đề không bắt mình tính khoảng cách cụ thể của từng cặp đỉnh.
+
+  > Liệu có cách nào để không cần phải xét đến từng cặp đỉnh không?
+
+- Khoảng cách giữa 2 đỉnh trên cây: **LCA**.
+
+### Hướng giải
+
+#### Cách 1: Duyệt từng cặp đỉnh - $O(N^2LogN)$
+
+- Độ phức tạp: $O(N^2LogN)$
+
+- Duyệt từng cặp đỉnh. Với mỗi cặp đỉnh, dùng LCA để tính khoảng cách.
+
+#### Cách 2: Duyệt từng cặp đỉnh - $O(N^2)$
+
+- Thay vì duyệt các cặp đỉnh và phải đi tính lại khoảng cách giữa các cặp này. Liệu có cách nào để ta sử dụng lại dữ kiện không?
+
+- Giả xử, xét 1 đỉnh $u$. Thì ta nên duyệt các đỉnh $v$ theo thứ tự như thế nào để có thể biết được khoảng cách giữa $u$ và $v$ trong $O(1)$?
+  > Thứ tự DFS.
+
+#### Cách 3: Không duyệt từng cặp đỉnh - O(N)
+
+- Với ở cách làm này thì ta sẽ cố gắng tận dụng lại dữ kiện để có thể tính 1 lần nhiều cặp đỉnh cùng 1 lúc.
+
+### Mở rộng
+
+1. $n \leq 10^6$
+
+## Bài 17
+
+### Tóm tắt
+
+- Cho 1 số nguyên $N$.
+- Tìm Bội nhỏ nhất của $N$ mà các chữ số chỉ chứa các số $0$ và $1$.
+
+### Nhận xét đề
+
+**Giới hạn**: Bội số cần tìm giới hạn trong $9$ chứ số.
+
+- Vậy sẽ có tổng cộng bao nhiêu trường hợp: $2^9$.
+
+### Hướng giải
+
+#### Cách 1: Bitmask, BFS - Xử lý trạng thái - $O(2^K)$
+
+- Với giới hạn số ký tự trong giá trị cuối cùng đủ nhỏ: $\leq 20$ thì ta có thể dễ dàng duyệt hết các kết quả đích và kiểm tra.
+
+- Độ phức tạp: $O(2^K)$
+  - Với $K$ là số lượng ký tự trong giá trị cuối cùng.
+
+#### Cách 2: Quy hoạch động - $O(N \times K)$
+
+- Dựa vào nhận xét của **Cách 1**, tuy nhiên, ta không cần thiết phải biết cụ thể giá trị của từng số mà chỉ cần duy trì việc:
+
+  > Tính số dư của số đang xét cho $N$ là bao nhiêu.
+
+- Như vậy, với $N$ nhỏ thì việc có nhiều giá trị có cùng số dư với $N$ là điều khó tránh khỏi. Với cách làm như này thì sẽ rút ngắn xuống cũng kha khá.
+
+**Công thức quy hoạch động**:  
+$DP[i][j] = 0/ 1$ có ý nghĩa như sau:
+
+- $i$ là số lượng ký tự đã xét.
+- $j$ là số dư của số đang xét cho $N$.
+- Giá trị là $1$: Nếu có thể tạo ra số có $i$ ký tự và số dư là $j$.
+
+Độ phức tạp:
+
+- Giả sử kết quả có $K$ chữ số.
+- Độ phức tạp sẽ là: $N \times K$.
+
+#### Cách 3: Xử lý với các lũy thừa 10 - $O(N \times N)$
+
+Nhận xét đáp án:
+
+- Đáp án của chúng ta sẽ có dạng: $10^x + 10^y + 10^z + \cdots$.
+
+Như vậy, nếu ta xây dựng hết các mảng có giá trị:
+
+- $Pow[i] = 10^i\ mod\ N$.
+- Thì ta chỉ cần tìm ra tổng của các $Pow[i]$ để chia hết cho $N$ thôi.
+
+Lưu ý khi xây dựng $Pow$, ta sẽ gặp phải 1 trong 2 trường hợp như sau:
+
+- Nếu $Pow[i] = Pow[j]$ thì đây là lúc **chu trình** được lặp lại.
+- Nếu $Pow[i] = Pow[j]$ mà $i > j$ thì ta chỉ cần lưu lại giá trị $Pow[j]$ thôi. Gộp với thông tin của chu trình thì mình sẽ biết được giá trị tiếp theo xuất hiện $Pow[k] = Pow[j]$ là bao nhiêu.
+
+Sau đó, ta có thể tìm đáp án bằng Quy hoạch động:
+
+- Chọn ra các phần tử có giá trị nhỏ nhất mà có tổng chia hết cho $N$.
+- Cái khó ở đây là việc xuất hiện **chu trình**.  
+  => Các giá trị có thể được lựa chọn 1 hoặc nhiều lần.
+
+Độ phức tạp: $O(N \times N)$
+
+#### Cách 4: Làm việc với thừa số nguyên tố
+
+> Chưa nghĩ ra
+
+### Mở rộng
+
+1. Không giới hạn kết quả cuối cùng.
+2. $N$ đủ lớn (Không cụ thể)
+
+## Bài 18: Đảo dãy
+
+### Tóm tắt
+
+- Cho dãy số $A$ gồm $N$ phần tử.
+- Ta có thể thực hiện 1 hoặc nhiều lần thao tác sau:
+  - Chọn 1 giá trị $i$.
+  - Lật toàn bộ đoạn $A_1, ..., A_i$.
+- Tìm số thao tác ít nhất để dãy có thứ tự tăng dần.
+
+### Nhận xét đề
+
+**Giới hạn**: Bội số cần tìm giới hạn trong $9$ chứ số.
+
+- Vậy sẽ có tổng cộng bao nhiêu trường hợp: $2^9$.
+
+- Với những đề có thao tác thay đổi như thế này thì ta cần phải xem xét các câu hỏi:
+
+  - Tính chất của việc lật này là gì?
+  - Thứ tự lật có quan trọng không?
+  - 2 phép lật giống nhau có thể cùng tồn tại không?
+  - Có DP được không?
+
+- Với việc phải cập nhật từ đầu dãy, thì việc tích lũy các giá trị vào cuối dãy là điều hợp lý.
+  - Nếu các giá trị liên tiếp nhau là tăng hay giảm dần -> Thì ta có thể shift đi chung 1 lượt luôn.
+
+### Hướng giải
+
+#### Cách 1 - Sinh trạng thái - BFS - $O(N! \times N)$
+
+- Ta sẽ lần lượt sinh ra các trạng thái mới từ trạng thái cũ.
+- Có tổng cộng: $N!$ trạng thái.
+- Mỗi trạng thái sẽ sinh ra $N$ trạng thái mới.
+- Độ phức tạp: $O(N! \times N)$
+
+#### Cách 2 -
+
+### Mở rộng
+
+## Bài 19
+
+### Tóm tắt
+
+- Cho 1 mảng $N$ phần tử. Mỗi phần tử có giá trị $H_i$.
+- **Ràng buộc**:
+  - 2 phần tử liên tiếp nhau trong mảng chênh lệch nhau không quá $1$.
+- Bạn được thực hiện $K$ phép biến đổi. Mỗi phép biến đổi sẽ thực hiện:
+  - Giảm 1 phần tử đi $1$ đơn vị.
+
+**Yêu cầu**: Tìm cách giảm làm sao cho phần tử nhỏ nhất trong mảng có giá trị nhỏ nhất.
+
+### Nhận xét đề
+
+- Giới hạn khá lớn:
+
+  - $N \leq 10^5$
+  - $K \leq 10^{18}$
+
+- Khả năng khá cao là sử dụng: Binary Search.
+- Các câu hỏi khi thực hiện Binary Search: $Check(X)$
+  - Giá trị $X$ đó sẽ nằm ở vị trí nào?
+  - Cần bao nhiêu lần biến đổi để đạt được giá trị $X$?
+
+### Hướng giải
+
+#### Cách 1: Binary Search + Trâu - $O(N^2LogN)$
+
+1. Binary Search đáp án.
+2. $Check(X)$: Kiểm tra xem có thể tạo được giá trị $X$ hay không?
+   - Thử với từng vị trí.
+   - Với vị trí $i$, cần check xem với giá trị là $X$ thì trạng thái của các khu vực lân cận sẽ như thế nào?
+     - $A[k] = min(A[k], X - abs(k - i))$ $(*)$
+   - Với các trạng thái như vậy thì mình cần bao nhiêu lần biến đổi.
+
+#### Cách 2: Binary Search + Nhận xét thêm - $O(NLogN)$
+
+Câu hỏi:
+
+- Liệu có cần thiết để check với mọi vị trí không?
+- Có cách nào để kiểm tra nhanh tại một vị trí không?
+
+Nhận xét:
+
+- Khi ta thiết lập $A[i] = X$ thì:
+  - Sẽ có 1 đoạn $L+1 \rightarrow R - 1$ sẽ bị ảnh hưởng.
+  - Còn đoạn bên ngoài: $(1 \rightarrow L)$ và $(R \rightarrow n)$ thì không bị ảnh hưởng.
+  - Nếu ta biết được nhanh $L$ và $R$ thì ta có thể tính được số lần biến đổi mà không cần phải duyệt qua từng vị trí không?
+
+**Bài toán 1**: Làm sao tính được đoạn $L \rightarrow R$?
+
+Nhận xét 1:
+
+- Sử dụng nhận xét $(*)$.
+  - $L$: Vị trí _gần nhất_ bên trái mà $A[L] \leq X + (i - L) \rightarrow (a[L] + L) - i \leq X$.
+  - $R$: Vị trí _gần nhất_ bên phải mà $A[R] \leq X + (R - i) \rightarrow (a[R] - R) + i \leq X$.
+- $2$ bài toán trên là độc lập với nhau.
+  - Chỉ có 2 biến số với mỗi lần truy vấn là: $X$ và $i$.
+
+Nhận xét 2:
+
+- Giả sử ta có cặp giá trị: $(X, i) \rightarrow L$.
+- Thì với cặp giá trị: $(X, i + 1) \rightarrow L'$
+  - Nếu $a[i - 1]$ không đổi thì $L' = i - 1$.
+  - Nếu $a[i - 1] = X + 1$ thì $L' >= L$ .
+- Tóm lại: $L' >= L$. (Có thể duyệt 2 con trỏ)
+
+**Bài toán 2**: Sau khi tìm được đoạn $L \rightarrow R$ thì làm sao tính được số lần biến đổi?
+
+- Ta đã biết được các giá trị từ $L+1 \rightarrow R-1$ sẽ phải chuyển thành giá trị gì.
+- Mà các phần tử này buộc phải giảm để đạt được giá trị đó.
+- Như vậy, số phép biến đổi cần thiết là: $Sum(Before) - Sum(After)$.
+
+  - $Before$: Tổng các giá trị ban đầu.
+  - $After$: Tổng các giá trị sau khi biến đổi.
+
+- $Sum(Before)$ ta có thể dễ dàng xây dựng bằng: **PrefixSum** - $O(1)$
+- $Sum(After)$ ta có thể dễ dàng xây dựng bằng: Công thức toán - $O(1)$
+
+### Mở rộng
+
+## Bài 20
+
+### Tóm tắt
+
+Xét tất cả hoán vị của dãy số tự nhiên $(1,2, \cdots, n)$. Giả sử rằng các hoán vị được xếp theo thứ tự từ điển và đánh số từ tới $n!$.
+
+**Yêu cầu**: Cho trước một hoán vị $(p_1, p_2, \cdots, p_n)$, hãy cho biết số thứ tự $x$ của nó và ngược lại: Cho trước số thứ tự $y$ ($1\leq y \leq n!$), hãy tìm dãy hoán vị tương ứng với nó.
+
+### Nhận xét đề
+
+Gọi $f(n)$ ($1 \leq n$) là số hoán vị của dãy số gồm $n$ phần tử khác nhau từng đôi một, với mọi $n > 1$ ta có:
+$$f(n) = n \cdot f(n-1).$$
+Nhận xét trên có thể dễ dàng chứng minh bằng quy nạp toán học.
+
+### Hướng giải
+
+#### Bài toán 1: Từ số ra dãy
+
+#### Bài toán 2: Từ dãy về số
+
+### Mở rộng
+
+## Bài 21 - Nâng cấp đồ thị
+
+### Tóm tắt
+
+- Cho đồ thị $N$ đỉnh, $M$ cạnh sao cho mỗi đỉnh đều có đường đi tới nhau.
+- Cần chọn một số cạnh để nâng cấp sao cho:
+  - Mọi đường đi giữa các cặp đỉnh tới nhau đều đi qua 1 con đường được nâng cấp.
+  - Tổng chi phí nâng cấp là nhỏ nhất.
+- Đề xuất $K$ phương án
+
+### Nhận xét đề
+
+#### Nếu đồ thị là cây
+
+- Nâng cấp hết
+
+#### Nếu các cạnh có trọng số như nhau
+
+- Chỉ quan tâm tới số lượng cạnh cần nâng cấp
+
+#### K phương án
+
+- Chưa biết xử lý như nào
+
+### Hướng giải
+
+### Mở rộng
+
+## Bài 22 - Cạnh cầu trên đồ thị
+
+### Tóm tắt
+
+- Cho đồ thị $N$ đỉnh và $M$ cạnh.
+- Hỏi với mỗi cạnh, nếu ta xóa cạnh đó đi thì đồ thị có bao nhiêu đỉnh không đến được với nhau.
+
+### Nhận xét đề
+
+1. Đồ thị có thể có nhiều thành phần liên thông.
+2. Chỉ có xóa cạnh cầu thì mới gia tăng số cặp đỉnh không đến được với nhau.
+
+### Hướng giải
+
+### Mở rộng
+
+<!--
 ## Mẫu bài
 
 ### Tóm tắt
@@ -533,30 +891,4 @@ Nếu không có cặp giá trị nguyên $(a,b)$ sao cho $a^2 + b^2 = S$ thì �
 
 ### Hướng giải
 
-### Mở rộng
-
-
-
-
-## Bài 20
-### Tóm tắt
-Xét tất cả hoán vị của dãy số tự nhiên $(1,2, \cdots, n)$. Giả sử rằng các hoán vị được xếp theo thứ tự từ điển và đánh số từ tới $n!$.
-
-**Yêu cầu**: Cho trước một hoán vị $(p_1, p_2, \cdots, p_n)$, hãy cho biết số thứ tự $x$ của nó và ngược lại: Cho trước số thứ tự $y$ ($1\leq y \leq n!$), hãy tìm dãy hoán vị tương ứng với nó.
-
-### Nhận xét đề
-Gọi $f(n)$ ($1 \leq n$) là số hoán vị của dãy số gồm $n$ phần tử khác nhau từng đôi một, với mọi $n > 1$ ta có:
-$$f(n) = n \cdot f(n-1).$$
-Nhận xét trên có thể dễ dàng chứng minh bằng quy nạp toán học. 
-
-(...còn tiếp...)
-
-
-
-
-
-
-### Hướng giải
-
-### Mở rộng
-
+### Mở rộng -->
