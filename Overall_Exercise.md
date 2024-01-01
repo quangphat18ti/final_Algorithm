@@ -520,8 +520,7 @@ $$
 ## Bài 13 (Sửa trên lớp rồi nè)
 
 ### Tóm tắt
-
-- Chọn điểm để chia tập hợp điểm ban đầu thành 2 phần bằng nhau.
+Cho một số chẵn các điểm tọa độ nguyên trên hệ trục tọa độ vuông góc. Tìm một đoạn thẳng nối 2 điểm trong số các điểm đã cho đoạn thẳng này chia tập điểm đã cho thành 2 phần có số điểm bằng nhau.
 
 ### Hướng giải
 
