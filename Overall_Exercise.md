@@ -477,6 +477,54 @@ Nhìn bài toán theo 1 góc nhìn khác:
 
 ### Mở rộng
 
+
+## Bài 12
+### Tóm tắt
+Cho biết liệu ta có thể xây dựng được một hình vuông trên trục tọa độ vuông góc với tọa độ các điểm là số nguyên và diện tích bằng với giá trị $S$ cho trước. Nếu có, liệt kê tọa độ các đỉnh của một hình vuông bất kỳ thỏa mãn.
+
+### Nhận xét đề
+Độ dài cạnh của một hình vuông diện tích $S$ là $\sqrt{S}$. Giả sử tồn tại hình vuông $ABCD$ có diện tích là $S$,  thì $AB = BC = CD = DA = \sqrt{S}$, hay:
+$$
+\begin{aligned}
+\sqrt{S} &= \sqrt{(x_A - x_B)^2 + (y_A - y_B)^2}\\
+\iff S &= (x_A - x_B)^2 + (y_A - y_B)^2.
+\end{aligned}
+$$
+Vì theo đề bài, $x_A$, $x_B$, $y_A$, $y_B$ là số nguyên, nên $(x_A - x_B)$  và $(y_A - y_B)$ cũng là số nguyên.
+
+### Hướng giải
+#### Kiểm tra liệu một số có phải là tổng của hai số chính phương.
+Dựa trên nhận xét đã cho ở trên, để biết liệu có tồn tại hình vuông thỏa mãn đề bài, ta kiểm tra liệu $S$ có phải là tổng của hai số chính phương hay không.:
+- **Phương án "ngây thơ"**: sử dụng hai vòng lặp để kiểm tra các cặp $(a, b)$ có thỏa mãn $a^2 + b^2 = S$ hay không. Độ phức tạp $O(S)$.
+- **Sử dụng tìm kiếm nhị phân**: Tạo mảng `square` trong đó vị trí `i` lưu số chính phương $i^2$ và $0 \leq i^2 \leq S$. Với số chính phương $a^2$  $(a^2 \leq S)$, ta dùng tìm kiếm nhị phân để tìm xem giá trị $b^2 = (S - a^2)$ có xuất hiện trong mảng `square` hay không. Nếu không tìm thấy giá trị nào, trả về kết quả `impossible`.
+#### Tọa độ bốn điểm của hình vuông
+Khi ta tìm được hai giá trị $a$ và $b$. Tọa độ các đỉnh của hình vuông đáp án có dạng (giả định chúng đều nằm trong giới hạn đề bài):
+- $A(x_0, y_0)$
+- $B(x_0 + a, y_0 + b )$
+- $C(x_0 + a + b, y_0 - a + b)$
+- $D(x_0 + b, y_0 - a)$
+
+hoặc:
+- $A(x_0, y_0)$
+- $B(x_0 + b, y_0 + a)$
+- $C(x_0 + a + b, y_0 + a - b)$
+- $D(x_0 + a, y_0 - b)$
+
+
+
+
+
+### Mở rộng
+#### Mở rộng 1: Đếm số lượng tất cả các hình vuông thỏa mãn trong giới hạn tọa độ.
+Nếu không có cặp giá trị nguyên $(a,b)$ sao cho $a^2 + b^2 = S$ thì đáp án là 0. Nếu tồn tại, ta có 3 trường hợp con xảy ra:
+1. $a = 0$ hoặc $b = 0$: Ít nhất một cạnh của hình vuông song song với một trục tọa độ. 
+2. $a = b$: Ít nhất một đường chéo của hình vuông song song với một trục tọa độ.
+3. Các trường hợp nằm ngoài 2 trường hợp trên: Với mỗi hình vuông bất kỳ có cạnh $(a + b)$ và tọa độ là số nguyên trên hệ trục tọa độ, tồn tại đúng 2 hình vuông thỏa mãn yêu cầu đề bài với các đỉnh nằm trên các cạnh của hình vuông đó. 
+
+
+
+
+
 ## Mẫu bài
 
 ### Tóm tắt
@@ -499,7 +547,9 @@ Xét tất cả hoán vị của dãy số tự nhiên $(1,2, \cdots, n)$. Giả
 ### Nhận xét đề
 Gọi $f(n)$ ($1 \leq n$) là số hoán vị của dãy số gồm $n$ phần tử khác nhau từng đôi một, với mọi $n > 1$ ta có:
 $$f(n) = n \cdot f(n-1).$$
-Nhận xét trên có thể dễ dàng chứng minh bằng quy nạp toán học.
+Nhận xét trên có thể dễ dàng chứng minh bằng quy nạp toán học. 
+
+(...còn tiếp...)
 
 
 
