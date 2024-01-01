@@ -31,6 +31,12 @@
 
 ### Hướng giải:
 
+#### Cách 1: Trâu bò - $O(n \times k)$
+
+- Tại mỗi vị trí, duyệt qua các đoạn con có độ dài k.
+
+#### Cách 2: Sử dụng cấu trúc dữ liệu - $O(nlogk)$
+
 1. Các cấu trúc dữ liệu để tính dãy con liên tiếp. (Segment Tree/ Fenwick Tree/ Sparse Table)
 
 - Độ phức tạp: O(nlogn)
