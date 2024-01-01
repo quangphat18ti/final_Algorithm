@@ -489,13 +489,25 @@ Nhìn bài toán theo 1 góc nhìn khác:
 - Vẽ hình vuông với tọa độ nguyên có diện tích bằng $S$.
 
 ### Nhận xét đề
+- Với giá trị nguyên $S > 0$, tồn tại hình vuông tọa độ nguyên có diện bằng $S$ khi và chỉ khi $S$ là tổng của hai số chính phương:
+$$
+\begin{aligned}
+S &= S_{ABCD}\\
+\iff \sqrt{S} &= AB = BC = CD = DA\\
+\iff \sqrt{S} &= \sqrt{(x_A - x_B)^2 + (y_A - y_B)^2}\\
+\iff S &= (x_A - x_B)^2 + (y_A - y_B)^2\\
 
-- Ta chỉ cần tìm $a$, $b$ với: $a^2 + b^2 = S$ với $a, b$ là số nguyên.
+\end{aligned}
+$$
+
+- Ta thực hiện hai công việc:
+  - Kiểm tra liệu $S$ có là tổng của hai số chính phương.
+  - Nếu $S$ là tổng của hai số chính phương $a^2$ và $b^2$, xuất ra 4 đỉnh của hình vuông bất kỳ thỏa mãn yêu cầu đề bài.
 
 ### Hướng giải
-
-- Với tọa độ: $(x_a, y_A)$ và 2 giá trị $(a, b)$ tìm được thì ta sẽ dễ dàng vẽ được hình vuông.
-  > (xA, yA), (xA + a, yA + b), (xA -b + a, yA + a + b), (xA - b, yA + a)
+- Quá trình tìm $a$ và $b$ sao cho $S = a^2 + b^2$: 
+  - **Thuật giải cơ bản**: Tìm tất cả cặp $(a,b)$ trong đó $0 \leq a \le b \leq \sqrt{S}$. Độ phức tạp $O(S)$. Độ phức tạp này chấp nhận được với giá trị $S$ nhỏ được cho trong đề.
+  - **Tìm kiếm nhị phân**: Xây dựng mảng `square` trong đó `square[i]` chứa giá trị `i*i`
 
 ### Mở rộng
 
