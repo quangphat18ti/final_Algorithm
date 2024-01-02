@@ -595,17 +595,25 @@ Cho một số chẵn các điểm tọa độ nguyên trên hệ trục tọa �
 
 ### Tóm tắt
 
-- Tìm diện tích giao nhau giữa 2 hình tròn
+- Tìm diện tích hợp bởi 2 hình tròn có tọa độ và bán kính nguyên, bán kín hai hình tròn bằng nhau.
 
 ### Hướng giải
+Bài toán được chuyển thành bài toán tính diện tích phần giao nhau giữa 2 hình tròn. 
 
-Tính diện tích giao nhau:
+Trước tiên, kiểm tra nếu hai cung tròn không giao nhau (khoảng cách giữa tâm 2 đường tròn $d$ lớn hơn tổng bán kính của chúng $R_1 + R_2 = 2 R$). Nếu chúng không giao nhau, diện tích phần giao nhau dĩ nhiên bằng 0.
 
-- Tính góc
-- Tính diện tích cung tròn
-- Tính diện tích tam giác
+Ngược lại, nếu hai hình tròn giao nhau, mấu chốt của việc giải bài toán nằm ở việc tính góc của cung tròn được tạo bởi vùng giao nhau của hai hình tròn. 
 
-Chỉ cần tính được góc thì có thể suy ra $2$ diện tích còn lại.
+- Cụ thể là tính góc $\alpha = \widehat{AO_2B} = \widehat{AO_1B}$. Với $A$ và $B$ là các giao điểm của hai đường tròn. Ta thực hiện được điều này bằng cách áp dụng định lý cosine với  $\Delta O_1O_2B$ và $\Delta O_1O_2A$:
+$$
+\begin{aligned}
+\cos{\frac{\alpha}{2}} &=  \frac{(O_1O_2) ^2 +  (O_1A)^2 - (O_2A)^2}{2 \cdot O_1O_2 \cdot O_2A}\\
+&= \frac{d^2 + R^2 - R^2}{2 d R}\\
+&= \frac{d}{2R}.
+\end{aligned}
+$$
+- Sau khi tìm được $\alpha$, ta có thể dễ dàng tìm ra diện tích hình thoi $O_1AO_2B$ và diện tích cung tròn tạo bởi góc $\widehat{AO_1B}$ và $\widehat{AO_2B}$.
+- Diện tích phần giao nhau bằng tổng diện tích 2 cung tròn trừ đi hình "chiếc lá".
 
 ![Alt text](image-1.png)
 Các tính chất có thể áp dụng:
@@ -620,6 +628,7 @@ Các tính chất có thể áp dụng:
 
 - Giải 2 phương trình 2 ẩn số để tìm độ dài của 2 cạnh màu xanh chuối chưa biết.
   - Dựa vào $R_1^2 - R_2^2$ và tổng độ dài 2 cạnh đó.
+- Áp dụng định lý cosine để tìm hai góc của cung tròn: $\alpha$ và $\beta$.
 
 2. Có n hình tròn
 
