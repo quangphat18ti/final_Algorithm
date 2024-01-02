@@ -572,17 +572,17 @@ Cho một số chẵn các điểm tọa độ nguyên trên hệ trục tọa �
 
 > Độ phức tạp: $O(N^3)$
 
-1. Chạy $N^2$ đường chéo.
-2. Với mỗi đường chéo duyệt qua tính diện tích từng phần. (Độ phức tạp: $O(N)$)
+1. Duyệt tất cả $N \cdot (N - 3)$ đường chéo. 
+2. Với mỗi đường chéo, ta tính diện tích hai phần của đa giác được đường chéo chia đôi . (Độ phức tạp: $O(N)$)
 3. Lưu lại đường chéo có diện tích nhỏ nhất.
 
 #### Cách 2: Trâu một phần - hơi dùng não
 
 > Độ phức tạp: $O(N^2)$
 
-1. Chạy $N^2$ đường chéo.
+1. Duyệt tất cả $N \cdot (N - 3)$ đường chéo. 
 2. Với mỗi đường chéo duyệt qua tính diện tích từng phần. (Độ phức tạp: $O(1)$)
-   - Làm sao để tận dụng lại được dữ liệu?
+   - **Quan trọng**: Làm sao để tận dụng lại được dữ liệu?
 3. Lưu lại đường chéo có diện tích nhỏ nhất.
 
 #### Cách 3: Dùng não hơi nhiều
