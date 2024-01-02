@@ -374,9 +374,19 @@ Lưu ý: chỉ xuất độ dài cạnh của hình vuông.
 
 ### Hướng giải
 
+#### Cách 1: Binary Search + Prefix Sum 2D - $O(n^2logn)$
+
 - Sử dụng Binary Search để tìm cạnh hình vuông lớn nhất có thể tạo ra.
   - Sử dụng Prefix Sum 2D để check nhanh 1 HCN có toàn số $0$ hoặc toàn số $1$.
 - Độ phức tạp: $O(n^2logn)$
+
+#### Cách 2: Quy hoạch động - $O(n^2)$
+
+- Sử dụng quy hoạch động để tìm cạnh hình vuông lớn nhất có thể tạo ra.
+
+$F[i][j]$ là: Cạnh hình vuông lớn nhất có thể tạo ra tại ô $(i, j)$.
+
+- Có liên hệ với các ô $(i - 1, j)$, $(i, j - 1)$, $(i - 1, j - 1)$. (Độ phức tạp: $O(1)$)
 
 ### Mở rộng
 
@@ -572,7 +582,7 @@ Cho một số chẵn các điểm tọa độ nguyên trên hệ trục tọa �
 
 > Độ phức tạp: $O(N^3)$
 
-1. Duyệt tất cả $N \cdot (N - 3)$ đường chéo. 
+1. Duyệt tất cả $N \cdot (N - 3)$ đường chéo.
 2. Với mỗi đường chéo, ta tính diện tích hai phần của đa giác được đường chéo chia đôi . (Độ phức tạp: $O(N)$)
 3. Lưu lại đường chéo có diện tích nhỏ nhất.
 
@@ -580,7 +590,7 @@ Cho một số chẵn các điểm tọa độ nguyên trên hệ trục tọa �
 
 > Độ phức tạp: $O(N^2)$
 
-1. Duyệt tất cả $N \cdot (N - 3)$ đường chéo. 
+1. Duyệt tất cả $N \cdot (N - 3)$ đường chéo.
 2. Với mỗi đường chéo duyệt qua tính diện tích từng phần. (Độ phức tạp: $O(1)$)
    - **Quan trọng**: Làm sao để tận dụng lại được dữ liệu?
 3. Lưu lại đường chéo có diện tích nhỏ nhất.
@@ -894,27 +904,36 @@ Nhận xét trên có thể dễ dàng chứng minh bằng quy nạp toán học
 
 - Cho đồ thị $N$ đỉnh, $M$ cạnh sao cho mỗi đỉnh đều có đường đi tới nhau.
 - Cần chọn một số cạnh để nâng cấp sao cho:
-  - Mọi đường đi giữa các cặp đỉnh tới nhau đều đi qua 1 con đường được nâng cấp.
+  - Giữa các cặp đỉnh đều có 1 **tuyến đường** được nâng cấp nối tới nhau.
   - Tổng chi phí nâng cấp là nhỏ nhất.
 - Đề xuất $K$ phương án
 
 ### Nhận xét đề
 
-#### Nếu đồ thị là cây
+- Vì giữa mỗi cặp đỉnh đều có 1 tuyến đường được nâng cấp nối tới nhau nên ta có thể nhận ra rằng:
 
-- Nâng cấp hết
+  > Các tuyến đường cần nâng cấp sẽ tạo thành 1 Cây Khung cho đồ thị.
 
-#### Nếu các cạnh có trọng số như nhau
+- Như vậy bài này sẽ trở thành bài toán tìm $K$ Cây Khung nhỏ nhất.
 
-- Chỉ quan tâm tới số lượng cạnh cần nâng cấp
-
-#### K phương án
-
-- Chưa biết xử lý như nào
+- Tuy nhiên, là rất khó để tìm ra $K$ cây khung nhỏ nhất, trừ khi .... duyệt trâu.
 
 ### Hướng giải
 
+#### Với K = 1 - $O(NLogN)$
+
+- Ta chỉ cần tìm cây khung nhỏ nhất.
+- Thuật toán tìm cây khung.
+
+#### Với K > 1
+
+- Ta sẽ thực hiện DFS để duyệt hết tất cả cây khung có thể có trong đồ thị.
+- Chọn ra $K$ cây khung có chi phí nhỏ nhất.
+
 ### Mở rộng
+
+1. Tìm $2$ cây khung nhỏ nhất.
+   > Có thuật toán để tìm nhưng khá là khó.
 
 ## Bài 22: Cạnh cầu trên đồ thị
 
@@ -930,4 +949,16 @@ Nhận xét trên có thể dễ dàng chứng minh bằng quy nạp toán học
 
 ### Hướng giải
 
+```
+Tìm hiểu về thuật toán tìm cầu.
+```
+
+1. Tính số đỉnh của các thành phần liên thông.
+2. Vì 2 đỉnh ở 2 TPLT khác nhau thì chắc chắn sẽ không có đường nối tới nhau. Nên ta có thể tính trước số cặp đỉnh không tới được với nhau - nếu không bỏ bất kỳ cạnh nào.
+3. Duyệt qua từng cạnh, nếu cạnh xóa đi là:
+   - Cạnh cầu: Chia đồ thị ra thành 2 phần. Mỗi phần có $X$ và $Y$ đỉnh. Thì số cặp đỉnh không đến được với nhau sẽ tăng thêm: $X \times Y$.
+   - Không phải cầu: Thì sẽ không có cặp đỉnh nào không đến được với nhau. (Vì đồ thị vẫn liên thông)
+
 ### Mở rộng
+
+1. Đồ thị có hướng.
