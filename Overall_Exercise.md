@@ -608,20 +608,21 @@ Cho một số chẵn các điểm tọa độ nguyên trên hệ trục tọa �
 - Tìm diện tích hợp bởi 2 hình tròn có tọa độ và bán kính nguyên, bán kín hai hình tròn bằng nhau.
 
 ### Hướng giải
-Bài toán được chuyển thành bài toán tính diện tích phần giao nhau giữa 2 hình tròn. 
+
+Bài toán được chuyển thành bài toán tính diện tích phần giao nhau giữa 2 hình tròn.
 
 Trước tiên, kiểm tra nếu hai cung tròn không giao nhau (khoảng cách giữa tâm 2 đường tròn $d$ lớn hơn tổng bán kính của chúng $R_1 + R_2 = 2 R$). Nếu chúng không giao nhau, diện tích phần giao nhau dĩ nhiên bằng 0.
 
-Ngược lại, nếu hai hình tròn giao nhau, mấu chốt của việc giải bài toán nằm ở việc tính góc của cung tròn được tạo bởi vùng giao nhau của hai hình tròn. 
+Ngược lại, nếu hai hình tròn giao nhau, mấu chốt của việc giải bài toán nằm ở việc tính góc của cung tròn được tạo bởi vùng giao nhau của hai hình tròn.
 
-- Cụ thể là tính góc $\alpha = \widehat{AO_2B} = \widehat{AO_1B}$. Với $A$ và $B$ là các giao điểm của hai đường tròn. Ta thực hiện được điều này bằng cách áp dụng định lý cosine với  $\Delta O_1O_2B$ và $\Delta O_1O_2A$:
-$$
-\begin{aligned}
-\cos{\frac{\alpha}{2}} &=  \frac{(O_1O_2) ^2 +  (O_1A)^2 - (O_2A)^2}{2 \cdot O_1O_2 \cdot O_2A}\\
-&= \frac{d^2 + R^2 - R^2}{2 d R}\\
-&= \frac{d}{2R}.
-\end{aligned}
-$$
+- Cụ thể là tính góc $\alpha = \widehat{AO_2B} = \widehat{AO_1B}$. Với $A$ và $B$ là các giao điểm của hai đường tròn. Ta thực hiện được điều này bằng cách áp dụng định lý cosine với $\Delta O_1O_2B$ và $\Delta O_1O_2A$:
+  $$
+  \begin{aligned}
+  \cos{\frac{\alpha}{2}} &=  \frac{(O_1O_2) ^2 +  (O_1A)^2 - (O_2A)^2}{2 \cdot O_1O_2 \cdot O_2A}\\
+  &= \frac{d^2 + R^2 - R^2}{2 d R}\\
+  &= \frac{d}{2R}.
+  \end{aligned}
+  $$
 - Sau khi tìm được $\alpha$, ta có thể dễ dàng tìm ra diện tích hình thoi $O_1AO_2B$ và diện tích cung tròn tạo bởi góc $\widehat{AO_1B}$ và $\widehat{AO_2B}$.
 - Diện tích phần giao nhau bằng tổng diện tích 2 cung tròn trừ đi hình "chiếc lá".
 
@@ -724,27 +725,43 @@ Các tính chất có thể áp dụng:
 - Độ phức tạp: $O(2^K)$
   - Với $K$ là số lượng ký tự trong giá trị cuối cùng.
 
-#### Cách 2: Quy hoạch động - $O(N \times K)$
+#### Cách 2: Loang - $O(N)$
 
 - Dựa vào nhận xét của **Cách 1**, tuy nhiên, ta không cần thiết phải biết cụ thể giá trị của từng số mà chỉ cần duy trì việc:
 
   > Tính số dư của số đang xét cho $N$ là bao nhiêu.
 
-- Như vậy, với $N$ nhỏ thì việc có nhiều giá trị có cùng số dư với $N$ là điều khó tránh khỏi. Với cách làm như này thì sẽ rút ngắn xuống cũng kha khá.
+- Ta sẽ thực hiện loang theo từng bậc các giá trị:
 
-**Công thức quy hoạch động**:
-$DP[i][j] = 0/ 1$ có ý nghĩa như sau:
+  - Bậc $i$ sẽ là các số có $i$ chữ số. Sao cho mỗi chữ số chỉ có giá trị là $0$ hoặc $1$.
+  - Tại 1 giá trị $X$, ta sẽ loang sang 2 giá trị:
+    1. $X \times 10$
+    2. $X \times 10 + 1$
 
-- $i$ là số lượng ký tự đã xét.
-- $j$ là số dư của số đang xét cho $N$.
-- Giá trị là $1$: Nếu có thể tạo ra số có $i$ ký tự và số dư là $j$.
+- Cải tiến:
 
-Độ phức tạp:
+  1. Ta không cần thiết phải lưu lại hết tất cả các giá trị mà loang ra được.
+  2. Ta chỉ cần lưu lại số dư của các giá trị đó cho $N$ là bao nhiêu.
+  3. Và tại 1 giá trị dư, thì ta chỉ cần lưu lại giá trị đầu tiên xuất hiện. (Nhỏ nhất) để có thể truy vết thôi.
 
-- Giả sử kết quả có $K$ chữ số.
-- Độ phức tạp sẽ là: $N \times K$.
+- Ví dụ: Với N = 3
 
-#### Cách 3: Xử lý với các lũy thừa 10 - $O(N \times N)$
+  - Bậc 1: 1
+  - Bậc 2: 1 (10%3 = 1), 2 (11%3 = 2)
+  - Bậc 3: 1 (10%3 = 1), 2 (11%3 = 2, 20%3=2), 0 (21%3 = 0)
+
+- Kết luận: Dừng lại ở bậc số $3$, đáp án cần tìm là: $111$.
+
+**Tối ưu: ta chỉ lưu lại giá trị đầu tiên xuất hiện của mỗi số dư.**
+Khi đó: $N = 3$
+
+- Bậc 1: 1
+- Bậc 2: 2 (11%3 = 2) [Có xuất hiện 10%3=1 nhưng vì 1 xuất hiện rồi nên bỏ]
+- Bậc 3: 0 (21%3 = 0) [Có xuất hiện 20%3=2 nhưng vì 2 xuất hiện rồi nên bỏ]
+
+Dừng ở bậc 3
+
+<!-- #### Cách 3: Xử lý với các lũy thừa 10 - $O(N \times N)$
 
 Nhận xét đáp án:
 
@@ -766,11 +783,7 @@ Sau đó, ta có thể tìm đáp án bằng Quy hoạch động:
 - Cái khó ở đây là việc xuất hiện **chu trình**.
   => Các giá trị có thể được lựa chọn 1 hoặc nhiều lần.
 
-Độ phức tạp: $O(N \times N)$
-
-#### Cách 4: Làm việc với thừa số nguyên tố
-
-> Chưa nghĩ ra
+Độ phức tạp: $O(N \times N)$ -->
 
 ### Mở rộng
 
@@ -788,10 +801,6 @@ Sau đó, ta có thể tìm đáp án bằng Quy hoạch động:
 - Tìm số thao tác ít nhất để dãy có thứ tự tăng dần.
 
 ### Nhận xét đề
-
-**Giới hạn**: Bội số cần tìm giới hạn trong $9$ chứ số.
-
-- Vậy sẽ có tổng cộng bao nhiêu trường hợp: $2^9$.
 
 - Với những đề có thao tác thay đổi như thế này thì ta cần phải xem xét các câu hỏi:
 
