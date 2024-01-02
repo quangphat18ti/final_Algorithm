@@ -136,9 +136,27 @@ Cách làm:
 
 - Tìm 2 phần tử trong 2 mảng A và B. Sao cho: $|a_i + b_j|$ là MIN.
 
-### Nhận xét đề
+### Nhận xét
 
-### Hướng giải
+- $|a_i + b_j| = MIN$ thì có 2 trường hợp:
+  1. $a_i + b_j \leq 0$ và $a_i + b_j$ lớn nhất.  
+     $\Rightarrow$ $b_j \leq -a[i]$ và $b_j$ lớn nhất.
+  2. $a_i + b_j \geq 0$ và $a_i + b_j$ nhỏ nhất.  
+     $\Rightarrow$ $b_j \geq -a[i]$ và $b_j$ nhỏ nhất.
+- Với mỗi $a_i$ ta cần tìm:
+  - $b_j$ lớn nhất mà: $b_j \leq -a_i$.
+  - Thì: $b_{j+1}$ sẽ nhỏ nhất mà: $b_j \geq -a_i$.
+
+### Hướng giải - Độ phức tạp $O(NlogN)$
+
+- Duyệt từng $a_i$.
+
+  - Tìm $b_j$ lớn nhất mà: $b_j \leq -a_i$.
+  - Cập nhật kết quả với $|a_i + b_j|$ và $a_i + b_{j+1}$.
+
+- Ta có thể tìm $b_j$ lớn nhất mà: $b_j \leq -a_i$ bằng cách:
+  - Sử dụng Binary Search.
+  - Sử dụng 2 con trỏ.
 
 ### Mở rộng
 
