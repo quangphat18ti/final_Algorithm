@@ -496,7 +496,7 @@ Nhìn bài toán theo 1 góc nhìn khác:
 - Thế giờ nếu đã có 2 ứng cử viên của 2 tập rồi thì ta sẽ chọn ứng cử viên nào?
 
   - Gọi ứng cử viên của tập thứ $1$ là $X$ và tập thứ $2$ là $Y$.
-  - Nếu $a_X - b_X > a_Y - min\_b\_value()$ thì ta sẽ chọn $X$.
+  - Nếu $$a_X - b_X > a_Y - min\_b\_value()$$ thì ta sẽ chọn $X$.
     - $min\_b\_value()$ : Là giá trị $b_i$ nhỏ nhất trong tập hợp thứ $1$.
   - Ngược lại thì chọn $Y$.
 
