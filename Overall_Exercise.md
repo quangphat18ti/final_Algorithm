@@ -374,9 +374,19 @@ Lưu ý: chỉ xuất độ dài cạnh của hình vuông.
 
 ### Hướng giải
 
+#### Cách 1: Binary Search + Prefix Sum 2D - $O(n^2logn)$
+
 - Sử dụng Binary Search để tìm cạnh hình vuông lớn nhất có thể tạo ra.
   - Sử dụng Prefix Sum 2D để check nhanh 1 HCN có toàn số $0$ hoặc toàn số $1$.
 - Độ phức tạp: $O(n^2logn)$
+
+#### Cách 2: Quy hoạch động - $O(n^2)$
+
+- Sử dụng quy hoạch động để tìm cạnh hình vuông lớn nhất có thể tạo ra.
+
+$F[i][j]$ là: Cạnh hình vuông lớn nhất có thể tạo ra tại ô $(i, j)$.
+
+- Có liên hệ với các ô $(i - 1, j)$, $(i, j - 1)$, $(i - 1, j - 1)$. (Độ phức tạp: $O(1)$)
 
 ### Mở rộng
 
