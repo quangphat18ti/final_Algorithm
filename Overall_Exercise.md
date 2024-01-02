@@ -677,6 +677,27 @@ Các tính chất có thể áp dụng:
 
 - Với ở cách làm này thì ta sẽ cố gắng tận dụng lại dữ kiện để có thể tính 1 lần nhiều cặp đỉnh cùng 1 lúc.
 
+- Mỗi Node $v$ ta sẽ lưu 3 giá trị:
+
+  1. **Breath**: Độ rộng của cây con có gốc là $v$.
+  2. **nChild**: Số lượng node con của $v$.
+  3. **sumDist**: Tổng khoảng cách từ $v$ đến các node con của nó.
+
+- Ta sẽ sử dụng các thông số này để tính toán độ rộng của cây giữa các nhánh con với nhau.
+
+- Giả xử ta có cặp đỉnh: $u - v$ thì ta sẽ có:
+
+```cpp=
++ u.breath += u.nChild * (v.breath + v.nChild) + u.sumDist * v.nChild;
+                                ^
+                [Total Dist from u -> v_children]
+
+
++ u.nChild += v.nChild;
+
++ u.sumDist += v.sumDist + v.nChild;
+```
+
 ### Mở rộng
 
 1. $n \leq 10^6$
