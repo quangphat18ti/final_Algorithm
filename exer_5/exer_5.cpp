@@ -51,10 +51,10 @@ vector<int> solve_Hash(string s, string t)
   vector<int> a = convert_string_to_vector(s);
   vector<int> b = convert_string_to_vector(t);
 
-  Hash hash(31, 1e9 + 7);
+  Hash hash(61, 1e9 + 7);
   hash.build_hash(a);
 
-  Hash hash2(31, 1e9 + 7);
+  Hash hash2(61, 1e9 + 7);
   hash2.build_hash(b);
 
   ll val_t = hash2.all();
