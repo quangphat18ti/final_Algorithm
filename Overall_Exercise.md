@@ -920,11 +920,27 @@ Gọi $f(n)$ ($1 \leq n$) là số hoán vị của dãy số gồm $n$ phần t
 $$f(n) = n \cdot f(n-1).$$
 Nhận xét trên có thể dễ dàng chứng minh bằng quy nạp toán học.
 
+> Nó sẽ tương đương với f(n) = n! hay factory(n)
+
 ### Hướng giải
 
-#### Bài toán 1: Từ số ra dãy
+#### Bài toán 1: Từ dãy về số
 
-#### Bài toán 2: Từ dãy về số
+Để chuyển từ dãy về số, thì ta cần biết được dãy này sẽ phải lớn hơn bao nhiêu dãy khác.
+
+- Nếu dãy số lớn hơn: $K$ trạng thái khác thì ta sẽ có số thứ tự là: $K + 1$.
+
+Vậy làm sao để biết được dãy số này lớn hơn bao nhiêu dãy khác?
+
+- Giả sử khi ta dang chọn $1$ số đầu tiên cho dãy gồm $n$ số.
+- Ta chọn giá trị là $X$ cho số đầu tiên. Và giá trị $X$ này là giá trị lớn thứ $K$ có thể được chọn.
+  - Như vậy, số trạng thái mà nó bỏ qua sẽ là: $(K - 1) \times f(n - 1)$ .
+
+Dựa vào nhận xét trên thì ta sẽ dễ dàng tính ra được số thứ tự của dãy số.
+
+#### Bài toán 2: Từ số ra dãy
+
+> Tương tự như cách làm ở trên, ta cũng sẽ duyệt qua từng lựa chọn số và xem coi nếu mình lựa chọn như vậy thì số trường hợp bỏ qua sẽ là bao nhiêu?
 
 ### Mở rộng
 
